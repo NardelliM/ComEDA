@@ -2,7 +2,9 @@
 ComEDA: a new tool for complexity assessment of electrodermal activity dynamics
 
 This function implements the ComEDA algorithm described in 
-[1] "ComEDA: a new tool for stress assessment based on electrodermal activity"
+
+[1] Nardelli, M., Greco, A., Sebastiani, L., & Scilingo, E.P. (2022). ComEDA: Complexity index of Electrodermal activity (EDA) dynamics. (Under
+revision in Computers in Biology and Medicine)
 
 ComEDA relies on a novel method for the reconstruction of EDA-derived phase space, where each series is embedded using its proper time delay.
 ComEDA may be computed by using fixed values of embedding dimension and time delay or their optimized values searched through the FNN method and
@@ -25,7 +27,7 @@ Syntax:
 comp=comEDA(sig, fs, varargin)
 
 Inputs:
- ser: vector related to a series from the raw EDA signal: cleaned EDA
+ sig: vector related to a series from the raw EDA signal: cleaned EDA
  signal, the tonic component or the phasic component
  fs: sampling frequency of EDA-related series
  emb: value of the embedding dimensions to be used to recontruct the phase
