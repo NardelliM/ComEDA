@@ -2,7 +2,7 @@ function comp=comEDA(ser, fs, emb, t_delay)
 %
 % ComEDA: Complexity index of Electrodermal activity (EDA) dynamics
 % This function implements the ComEDA algorithm described in "ComEDA: 
-% a new tool for stress assessment based on electrodermal activity", 
+% a new tool for stress assessment based on electrodermal activity"
 % 
 % ComEDA relies on a novel method for the reconstruction of EDA-derived
 % phase space, where each series is embedded using its proper time delay.
@@ -14,7 +14,7 @@ function comp=comEDA(ser, fs, emb, t_delay)
 % cvxEDA approach (DOI: 10.1109/TBME.2015.2474131).
 %
 % Syntax:
-%   comp=comEDA(sig, fs, varargin)
+%   comp=comEDA(ser, fs, varargin)
 %
 %   Inputs:
 % ser: vector related to a series from the raw EDA signal: cleaned EDA
@@ -57,14 +57,10 @@ function comp=comEDA(ser, fs, emb, t_delay)
 %
 % ______________________________________________________________________________
 
-% Pre-processing of raw EDA signal: application of cvxEDA approach 
 
-% [pha, p, ton, l, d, e, obj] = cvxEDA(sig, 1/fs, 3,1,10,8*10^-3);
-% eda=pha+ton;
-
-% If the vectors reporting the values of embedding dimension (m) and time delay (tau) 
-% for eda, phasic and tonic series are not passed as inputs, the auto-mutual information 
-% function and the FNN method are used for their computation
+% If the values of embedding dimension (emb) and time delay (t_delay) 
+% for the considered time series are not passed as inputs, the FNN method and the auto-mutual 
+% information function and used for their computation
 
 if nargin<3
  
@@ -81,7 +77,7 @@ end
 % Each time series is rescaled using a min-max normalization
 nser = (ser-min(ser)) ./ (max(ser)-min(ser));
 
-% Distance matrix estimation
+% Phase space reconstruction
 N=length(ser);
 M=N-(emb-1)*t_delay; 
 ind=hankel(1:M, M:N);
@@ -96,7 +92,6 @@ B=calcnbins(angd, 'sturges');
 B=2^ceil(log2(B));
 
 % Esimating probability density by a kernel density estimator for one-dimensional data
-
 [xi,den] = kde(angd,B);
 freq = den./sum(den);
 
