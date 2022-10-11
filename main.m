@@ -33,10 +33,10 @@ for p=1:2
     figure(p)
     for s=1:3
            for subj=1:3
-            cmd=sprintf('comp_rest_%s.%s(subj)=comEDA(data_%s.sub%d.%s.rest, fs);',prot{p},ser{s},prot{p},subj,ser{s});
+            cmd=sprintf('comp_rest_%s.%s(subj)=comEDA(data_%s.sub%d.%s.rest);',prot{p},ser{s},prot{p},subj,ser{s});
             eval(cmd)
             
-            cmd=sprintf('comp_stress_%s.%s(subj)=comEDA(data_%s.sub%d.%s.stress, fs);',prot{p},ser{s},prot{p},subj,ser{s});
+            cmd=sprintf('comp_stress_%s.%s(subj)=comEDA(data_%s.sub%d.%s.stress);',prot{p},ser{s},prot{p},subj,ser{s});
             eval(cmd)
         end
     subplot(1,3,s)
