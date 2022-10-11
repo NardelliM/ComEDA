@@ -1,4 +1,4 @@
-function comp=comEDA(ser, fs, emb, t_delay)
+function comp=comEDA(ser, emb, t_delay)
 %
 % ComEDA: Complexity index of Electrodermal activity (EDA) dynamics
 % This function implements the ComEDA algorithm described in "ComEDA: 
@@ -14,12 +14,11 @@ function comp=comEDA(ser, fs, emb, t_delay)
 % cvxEDA approach (DOI: 10.1109/TBME.2015.2474131).
 %
 % Syntax:
-%   comp=comEDA(ser, fs, varargin)
+%   comp=comEDA(ser, varargin)
 %
 %   Inputs:
 % ser: vector related to a series from the raw EDA signal: cleaned EDA
 % signal, the tonic component or the phasic component
-% fs: sampling frequency of EDA-related series
 % emb: value of the embedding dimensions to be used to recontruct the phase
 % space according to Takens' time-delay embedding theorem.
 % t_delay: value of time delay 
@@ -62,7 +61,7 @@ function comp=comEDA(ser, fs, emb, t_delay)
 % for the considered time series are not passed as inputs, the FNN method and the auto-mutual 
 % information function and used for their computation
 
-if nargin<3
+if nargin<2
  
     t_delay = mdDelay(ser,'criterion','localMin','numBins',20,'plottype','none');
     Fx=knn_deneme(ser,t_delay,20); 
