@@ -77,10 +77,10 @@ end
 nser = (ser-min(ser)) ./ (max(ser)-min(ser));
 
 % Phase space reconstruction
-N=length(ser);
+N=length(nser);
 M=N-(emb-1)*t_delay; 
 ind=hankel(1:M, M:N);
-vect=ser(ind(:, 1:t_delay:end));
+vect=nser(ind(:, 1:t_delay:end));
 
 % Computing the angular distances between each pair of vectors in the
 % reconstructed phase space
